@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>입법조사관 MCP·API 도구모음</title>
+<style>
+:root{--paper:#fcfcfa;--ink:#212837;--sub:#5d667a;--line:#d9dde6;--accent:#2c4f7c;--accent-deep:#1b3557;--accent-soft:#eef2f8;--code-bg:#f2f3f6;--th-ink:#fff;--row-alt:#f6f8fb;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#161b24;--ink:#e3e7ef;--sub:#9aa4b5;--line:#323b4b;--accent:#8fb0d9;--accent-deep:#c3d5ec;--accent-soft:#1f2836;--code-bg:#1f2530;--th-ink:#10151d;--row-alt:#1b212c;}}
+:root[data-theme="dark"]{--paper:#161b24;--ink:#e3e7ef;--sub:#9aa4b5;--line:#323b4b;--accent:#8fb0d9;--accent-deep:#c3d5ec;--accent-soft:#1f2836;--code-bg:#1f2530;--th-ink:#10151d;--row-alt:#1b212c;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Nanum Gothic",sans-serif;font-size:15px;line-height:1.75;word-break:keep-all;overflow-wrap:break-word;font-variant-numeric:tabular-nums}
+.wrap{max-width:880px;margin:0 auto;padding:48px 16px 80px}
+@media (min-width:700px){.wrap{padding:52px 40px 88px}}
+.doc-head{border-bottom:3px solid var(--accent);padding-bottom:18px;margin-bottom:28px}
+.eyebrow{font-size:12.5px;letter-spacing:.08em;color:var(--sub);margin-bottom:8px}
+h1{font-size:28px;line-height:1.32;margin:0 0 8px;color:var(--accent-deep)}
+.doc-head p{margin:3px 0;color:var(--sub);font-size:14px}
+.doc-head p strong{color:var(--ink)}
+h2{font-size:20px;margin:40px 0 12px;padding:8px 14px;background:var(--accent-soft);border-left:5px solid var(--accent);color:var(--accent-deep);break-after:avoid}
+h3{font-size:16.5px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px;break-after:avoid}
+p{margin:8px 0}
+.tbl{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{background:var(--accent);color:var(--th-ink);padding:6px 9px;text-align:left;border:1px solid var(--accent);white-space:nowrap}
+td{border:1px solid var(--line);padding:6px 9px;vertical-align:top}
+tr:nth-child(even) td{background:var(--row-alt)}
+td:first-child{white-space:nowrap}
+code{background:var(--code-bg);padding:1px 5px;border-radius:4px;font-size:.88em;font-family:"SF Mono",Menlo,Consolas,"D2Coding",monospace;word-break:break-all}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px;line-height:1.55}
+pre code{background:none;padding:0;word-break:normal;white-space:pre-wrap}
+ul,ol{padding-left:22px;margin:6px 0}
+li{margin:3px 0}
+hr{border:none;border-top:1px dashed var(--line);margin:30px 0}
+strong{color:var(--accent-deep)}
+a{color:var(--accent)}
+@page{size:A4 portrait;margin:15mm 14mm 16mm}
+@media print{
+ :root{--paper:#fff;--ink:#1a1f2e;--sub:#4b5466;--line:#c9ced8;--accent:#2c4f7c;--accent-deep:#1b3557;--accent-soft:#eef2f8;--code-bg:#f2f3f6;--th-ink:#fff;--row-alt:#f6f8fb}
+ body{font-size:10pt;line-height:1.6;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .wrap{max-width:none;padding:0}
+ h1{font-size:20pt} h2{font-size:13.5pt;margin-top:20pt} h3{font-size:11.5pt;margin-top:14pt}
+ table{font-size:8.8pt} th,td{padding:4px 6px}
+ pre{font-size:8.6pt;break-inside:avoid}
+ tr,li{break-inside:avoid}
+ hr{display:none}
+ .tbl{overflow:visible}
+}
+</style></head>
+<body><div class="wrap">
+<div class="doc-head"><div class="eyebrow">국회사무처 2026년 신임관리자 교육 배포자료</div><h1>입법조사관을 위한 MCP·API 도구 모음</h1><p><strong>Claude Code에 붙여 쓰는 법령·의안·입법례·재정·통계 자료원 (2026. 10. 26. 기준)</strong></p></div>
+<hr />
+<h2>1. MCP와 API</h2>
+<ul>
+<li><strong>API</strong>(Application Programming Interface): 기관이 자료를 기계가 읽는 형식(JSON·XML)으로 내어 주는 창구임</li>
+<li>예: 열린국회정보 API에 대수(<code>AGE=22</code>)를 넣으면 국회의원 발의 법률안 목록이 JSON으로 돌아옴</li>
+<li><strong>MCP</strong>(Model Context Protocol): API 같은 자료원을 Claude가 대화 중에 직접 부르는 도구로 연결하는 표준 규격임</li>
+<li>연결해 두면 "「국회법」 제79조의2 현행 조문 보여줘"라고 했을 때 Claude가 스스로 법령 API를 조회함</li>
+<li><strong>고르는 순서</strong></li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>자료원의 형편</th>
+<th>쓰는 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이미 만들어진 MCP가 있음</td>
+<td>MCP를 설치해 대화로 조회함(2절)</td>
+</tr>
+<tr>
+<td>MCP는 없고 Open API만 있음</td>
+<td>API 명세서를 Claude Code에 주고 조회 스크립트 작성을 지시함</td>
+</tr>
+<tr>
+<td>API 없이 웹 화면만 있음</td>
+<td>화면에서 내려받은 hwp·pdf 파일을 kordoc으로 읽힘(3.7)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>직접 API를 익힐 필요는 없음. 다만 <strong>인증키 발급과 결과 대조는 사람이 맡음</strong></li>
+</ul>
+<hr />
+<h2>2. Claude Code에 MCP를 붙이는 법</h2>
+<p>Claude Code 공식 문서(code.claude.com/docs/en/mcp)의 문법임.</p>
+<pre><code class="language-bash"># 내 컴퓨터에서 실행하는 서버(stdio): &quot;--&quot; 앞은 Claude 옵션, 뒤는 서버 실행 명령
+claude mcp add [options] &lt;이름&gt; -- &lt;실행 명령&gt; [인자...]
+
+# 원격 서버(HTTP)
+claude mcp add --transport http &lt;이름&gt; &lt;URL&gt;
+
+# 서버에 환경변수 넘기기: --env와 서버 이름 사이에 다른 옵션을 하나 둠
+claude mcp add --env KEY=값 --transport stdio &lt;이름&gt; -- &lt;실행 명령&gt;
+
+# 관리
+claude mcp list          # 연결 목록과 상태
+claude mcp get &lt;이름&gt;    # 상세
+claude mcp remove &lt;이름&gt; # 삭제
+# 대화 중에는 /mcp: 서버 상태 확인, 원격 서버 로그인
+</code></pre>
+<ul>
+<li><strong>적용 범위(<code>--scope</code>)</strong></li>
+<li><code>local</code>(기본값): 지금 프로젝트에서 나만 씀. 설정은 <code>~/.claude.json</code>에 저장됨</li>
+<li><code>user</code>: 내 모든 프로젝트에서 씀. 설정은 <code>~/.claude.json</code>에 저장됨</li>
+<li><code>project</code>: 프로젝트 폴더의 <code>.mcp.json</code>에 저장돼 폴더를 받은 사람과 공유됨</li>
+<li><strong>인증키 보관</strong></li>
+<li>키는 셸 환경변수로 둠. 예: <code>~/.zshrc</code>에 <code>export LAW_OC=본인 발급 값</code></li>
+<li><code>.mcp.json</code>에는 <code>${LAW_OC}</code>처럼 변수 이름만 적음. <code>${변수}</code>와 <code>${변수:-기본값}</code> 확장은 공식 지원됨</li>
+<li><code>--env</code>에 키 값을 직접 적으면 그 값이 서버 설정과 함께 저장되므로, 공유하는 폴더에서는 쓰지 않음</li>
+<li>프로젝트에 <code>.env</code> 파일을 둘 때는 <code>.gitignore</code>에 등록해 저장소에 올라가지 않게 함</li>
+<li><strong>승인 절차</strong>: 남이 준 폴더의 <code>.mcp.json</code> 서버는 대화형 실행에서 사용 전에 승인을 물음. 모르는 서버는 승인하지 않음</li>
+</ul>
+<hr />
+<h2>3. 업무 축별 자료원</h2>
+<h3>한눈에 보기</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>업무 축</th>
+<th>자료원</th>
+<th>인증키</th>
+<th>연결 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>법령·조문, 판례·헌재결정</td>
+<td>국가법령정보 공동활용 Open API · korean-law-mcp</td>
+<td>법제처 OC(무료, 승인 필요)</td>
+<td>MCP 설치</td>
+</tr>
+<tr>
+<td>의안·심사 경과·회의록</td>
+<td>열린국회정보 Open API · 의안정보시스템 · 국회회의록</td>
+<td>열린국회정보 인증키(무료)</td>
+<td>API 스크립트 또는 MCP</td>
+</tr>
+<tr>
+<td>해외 입법례</td>
+<td>국회도서관 입법자료포털 Open API · 세계법제정보센터 · 각국 공식 법령 사이트</td>
+<td>입법자료포털 인증키</td>
+<td>API 스크립트 · 웹</td>
+</tr>
+<tr>
+<td>입법예고·행정입법</td>
+<td>국민참여입법센터 입법정보공개 API · 국가법령정보 API(위임법령·3단비교)</td>
+<td>법제처 OC(신청·IP 등록)</td>
+<td>API 스크립트</td>
+</tr>
+<tr>
+<td>비용추계·재정</td>
+<td>국회예산정책처 재정경제통계시스템 Open API · 열린재정 Open API</td>
+<td>각 사이트 인증키</td>
+<td>API 스크립트</td>
+</tr>
+<tr>
+<td>통계</td>
+<td>KOSIS 공유서비스 · 공공데이터포털</td>
+<td>각 사이트 인증키</td>
+<td>API 스크립트</td>
+</tr>
+<tr>
+<td>문서 읽기·변환</td>
+<td>kordoc</td>
+<td>필요 없음</td>
+<td>MCP 설치</td>
+</tr>
+</tbody>
+</table></div>
+<h3>3.1 법령·조문 현행 확인, 판례·헌재결정</h3>
+<p><strong>국가법령정보 공동활용 Open API</strong> (법제처, open.law.go.kr)</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주는 것</td>
+<td>현행법령(시행일·공포일 기준)·법령 연혁·영문법령·조항호목 단위 본문, 신구법 비교, 3단 비교, 위임법령, 행정규칙, 자치법규, 판례, 헌재결정례, 법령해석례, 행정심판례, 각 위원회 결정문, 중앙부처 1차 해석, 조약, 별표·서식, 법령용어</td>
+</tr>
+<tr>
+<td>발급</td>
+<td>open.law.go.kr 회원가입 → OPEN API 신청(활용할 데이터 선택) → 담당자 승인 후 사용. 승인은 신청 후 1~2일 이내 처리로 안내됨</td>
+</tr>
+<tr>
+<td>인증</td>
+<td>모든 요청에 <code>OC</code> 값(본인 발급 값)을 붙임</td>
+</tr>
+<tr>
+<td>요청 형식</td>
+<td>목록: <code>https://www.law.go.kr/DRF/lawSearch.do?OC=본인 발급 값&amp;target=대상&amp;type=JSON&amp;query=검색어</code><br>본문: <code>https://www.law.go.kr/DRF/lawService.do?OC=본인 발급 값&amp;target=대상&amp;MST=법령일련번호&amp;type=JSON</code></td>
+</tr>
+<tr>
+<td>주요 target</td>
+<td><code>law</code> 현행법령 · <code>eflaw</code> 시행일 기준 법령 · <code>prec</code> 판례 · <code>detc</code> 헌재결정례 · <code>expc</code> 법령해석례 · <code>oldAndNew</code> 신구법 · <code>thdCmp</code> 3단 비교</td>
+</tr>
+<tr>
+<td>주의</td>
+<td>이용조건 위반·과도한 트래픽 등으로 이용이 제한될 수 있음. 대량 자동 호출은 상한을 정해 시킴</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>korean-law-mcp</strong> (github.com/chrisryugj/korean-law-mcp, MIT)</p>
+<ul>
+<li>위 법제처 API를 감싼 MCP임. 법령·판례·헌재결정·해석례·자치법규·조약 검색과 함께 다음 기능을 제공함</li>
+<li>인용 검증(<code>verify_citations</code>): 답변에 나온 조문·판례가 실제로 있는지 법제처 자료와 대조함</li>
+<li>시점 적용 법령(<code>applicable_law</code>): 특정 일자에 시행 중이던 조문과 부칙 경과규정을 찾음</li>
+<li>개정 추적(<code>amendment_track</code>): 신구대조, 조문별 개정 이력</li>
+<li>위임입법 점검: 하위법령에 위임한 조항 중 시행령이 아직 없는 조항을 찾음</li>
+<li>설치 방법 셋 중 하나를 고름</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>방식</th>
+<th>명령</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code 플러그인</td>
+<td><code>/plugin marketplace add chrisryugj/korean-law-mcp</code><br><code>/plugin install korean-law@korean-law-marketplace</code></td>
+<td>설치가 가장 간단함. 제작자가 운영하는 공개 서버(mcp.gomdori.app)에 연결되며 키는 선택 입력</td>
+</tr>
+<tr>
+<td>내 컴퓨터에 설치(자동)</td>
+<td><code>npx --ignore-scripts --omit=optional korean-law-mcp setup</code></td>
+<td>키 입력과 클라이언트 등록을 마법사가 처리함. Claude Code 설정에는 <code>${LAW_OC}</code> 참조를 넣음</td>
+</tr>
+<tr>
+<td>내 컴퓨터에 설치(수동)</td>
+<td><code>npm install --ignore-scripts --omit=optional -g korean-law-mcp</code> 후 설정에 <code>LAW_OC</code> 환경변수 지정</td>
+<td>Node.js 20.19 이상 필요</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>시킬 일 예시</li>
+<li>"「국회법」 제79조의2 현행 조문과 시행일을 원문 그대로 보여줘"</li>
+<li>"이 검토보고서 초안에 나온 조문·판례 인용을 전부 검증해 실존 여부를 표로 정리해줘"</li>
+<li>"개정안 제12조와 같은 내용을 다룬 헌재결정례를 찾아 사건번호·종국일자·결정 요지를 정리해줘"</li>
+<li>주의</li>
+<li>플러그인 방식은 조회 내용이 외부 공개 서버를 거침. 검토 중인 내용을 넣어 조회할 때는 내 컴퓨터 설치 방식을 씀</li>
+<li>도구가 돌려준 조문도 최종 문안에 넣기 전에 국가법령정보센터 화면에서 시행일을 다시 확인함</li>
+</ul>
+<p><strong>legalize-kr</strong> (github.com/legalize-kr/legalize-kr)</p>
+<ul>
+<li>대한민국 법령을 법령 하나당 Markdown 파일, 개정 하나당 실제 공포일자의 Git 커밋으로 관리하는 저장소임</li>
+<li><code>git clone https://github.com/legalize-kr/legalize-kr</code> 후 키·인터넷 없이 내 컴퓨터에서 조문·개정 연혁을 검색함</li>
+<li>시킬 일 예시: "이 폴더에서 「국회법」 제79조의2의 개정 연혁을 공포일자 순으로 표로 정리해줘"</li>
+<li>주의: 민간이 관리하는 사본이므로 최종 확인은 국가법령정보센터 원문으로 함</li>
+</ul>
+<h3>3.2 의안·심사 경과·회의록</h3>
+<p><strong>열린국회정보 Open API</strong> (open.assembly.go.kr)</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주는 것</td>
+<td>의안정보 통합 API, 국회의원 발의법률안, 법률안 제안이유 및 주요내용, 법률안 심사 및 처리(의안검색), 소위 심사정보(법률안), 의안별 회의록 목록, 회의록별 상세정보, 공청회 회의록, 국정감사 회의록, 회의별 의안목록, 제안설명서 목록, 국회의원 본회의 표결정보 등</td>
+</tr>
+<tr>
+<td>발급</td>
+<td>로그인 → 마이페이지 '인증키 발급'. 인증키 없이 호출하면 <code>sample</code>로 처리돼 10건만 출력됨</td>
+</tr>
+<tr>
+<td>요청 형식</td>
+<td><code>https://open.assembly.go.kr/portal/openapi/서비스 고유명?KEY=본인 발급 값&amp;Type=json&amp;pIndex=1&amp;pSize=100&amp;요청인자</code></td>
+</tr>
+<tr>
+<td>확인 예</td>
+<td>국회의원 발의법률안의 고유명은 <code>nzmimeepazxkubdpn</code>, 요청인자 <code>AGE</code>(대수) 필수. 결과에 의안번호·의안명·제안일·제안자·의안정보시스템 상세 주소가 들어 있음</td>
+</tr>
+<tr>
+<td>명세서</td>
+<td>'Open API 목록'에서 서비스마다 명세서를 내려받아 고유명·요청인자를 확인함</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>시킬 일 예시</li>
+<li>"열린국회정보 API 명세서(첨부)를 읽고, 제22대 국회에서 제안된 「국민건강보험법」 일부개정법률안 목록을 의안번호·제안일·제안자·처리 결과 표로 만드는 스크립트를 짜줘. 키는 환경변수 ASSEMBLY_KEY에서 읽어"</li>
+<li>"이 의안의 제안이유 및 주요내용을 가져와 개정 조문별로 나눠 정리해줘"</li>
+<li>"같은 조문을 고치려는 계류 법률안을 모두 찾아 대안 반영 가능성을 검토할 비교표 틀을 만들어줘"</li>
+<li>주의: 공지사항에 '법률안 심사 및 처리(의안검색) API 서비스 변경 안내'(2025. 11. 12.)가 게시돼 있음. 예전 블로그의 요청 주소는 바뀌었을 수 있으므로 명세서를 새로 받아 씀</li>
+</ul>
+<p><strong>의안정보시스템</strong> (likms.assembly.go.kr)</p>
+<ul>
+<li>의안별 심사정보 화면에 의안번호·제안일자·제안자·제안회기, 제안이유 및 주요내용, 심사진행단계(접수 → 위원회 심사 → 체계자구 심사 → 본회의 심의 → 정부이송 → 공포)가 나옴</li>
+<li>비고란에 비용추계 관련 제출 상태(예: '비용추계요구서 제출됨')가 표시됨</li>
+<li>열린국회정보 API 결과의 상세 주소(<code>DETAIL_LINK</code>)가 이 화면으로 연결됨</li>
+</ul>
+<p><strong>국회회의록 시스템</strong> (record.assembly.go.kr)</p>
+<ul>
+<li>제헌국회부터 제22대까지 본회의·상임위원회·예산결산특별위원회·특별위원회·국정감사·국정조사·전원위원회 회의록을 제공함</li>
+<li>국정감사 회의록은 열린국회정보 데이터가 회의별 PDF 내려받기 주소를 함께 제공함</li>
+<li>시킬 일 예시: "이 회의록 PDF에서 개정안 제5조에 관한 발언만 찾아 발언자·직위·요지·쪽 번호 표로 정리해줘"</li>
+<li>대조할 것: 발언자 이름·직위, 회의 일자·차수, 직접 인용 문장이 글자 그대로인지</li>
+</ul>
+<p><strong>국회입법조사처 발간물 API</strong> (공공데이터포털 data.go.kr/data/3037296)</p>
+<ul>
+<li>연구보고서·학술지·세미나 및 간담회 자료·조사처 알림지·정책연구용역자료의 목록과 상세를 제공함</li>
+<li>공공데이터포털 활용신청, 개발·운영 단계 모두 자동승인, 개발계정 트래픽 10,000으로 표시됨, JSON·XML</li>
+</ul>
+<p><strong>open-assembly-mcp</strong> (github.com/kyusik-yang/open-assembly-mcp, Apache-2.0)</p>
+<ul>
+<li>열린국회정보 API를 감싼 개인 개발 MCP임. 의안·의원·표결·위원회 구성·국회입법조사처 보고서 등을 조회함</li>
+<li>설치 안내: <code>uvx open-assembly-mcp --setup</code>(uv 설치 필요). 인증키는 환경변수 <code>ASSEMBLY_API_KEY</code></li>
+<li>프로젝트 <code>.mcp.json</code>에 직접 적을 때는 키 자리에 변수 이름만 둠</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;open-assembly&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [&quot;open-assembly-mcp&quot;],
+      &quot;env&quot;: { &quot;ASSEMBLY_API_KEY&quot;: &quot;${ASSEMBLY_API_KEY}&quot; }
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>주의: 이용자가 적은 개인 저장소임. 업무에 쓰기 전 코드와 갱신 상태를 확인하고, 확인 전에는 API 스크립트 방식을 씀</li>
+</ul>
+<h3>3.3 해외 입법례</h3>
+<p><strong>국회도서관 입법자료포털 Open API</strong> (lnp.nanet.go.kr '안내 &gt; Open API')</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주는 것</td>
+<td>주요국 입법자료, 최신외국입법정보, Data&amp;Law, 쟁점 서비스(법률별·쟁점별), 외국법률번역DB, 팩트북</td>
+</tr>
+<tr>
+<td>발급</td>
+<td>입법자료포털 로그인 → 이용약관 동의 → 인증키 발급요청 → 본인 인증키 확인</td>
+</tr>
+<tr>
+<td>요청 예</td>
+<td>주요국 입법자료: <code>http://lnp.nanet.go.kr/openapi/lawpreced?KEY=본인 발급 값&amp;TYPE=json&amp;PAGE_NO=1&amp;DISPLAY_LINES=10&amp;SEARCH_KEYWORD=검색어</code></td>
+</tr>
+<tr>
+<td>결과 항목</td>
+<td>원법률명·번역법률명·원판례명·국가명·공포일·선고일·위원회명·상세 화면 주소</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>시킬 일 예시</li>
+<li>"입법자료포털 API로 '플랫폼 노동'을 검색해 국가·원법률명·번역법률명·공포일 표를 만들어줘"</li>
+<li>"찾은 외국 법률의 원문 조문과 우리 개정안 조문을 나란히 놓고 의무 주체·의무 내용·제재를 비교하는 표 틀을 만들어줘"</li>
+<li>국회도서관은 공공데이터포털에도 자료검색 서비스(도서·학위논문·국내외 기사 목록, XML, 심의승인)와 상세정보조회 서비스를 등록해 둠</li>
+</ul>
+<p><strong>세계법제정보센터</strong> (법제처, world.moleg.go.kr)</p>
+<ul>
+<li>국가별 법령 검색·입법 동향·보고서를 웹으로 제공함. Open API 제공 여부는 확인되지 않음</li>
+<li>화면에서 찾은 번역문은 원문 대조용으로 내려받아 Claude Code에 함께 줌</li>
+</ul>
+<p><strong>각국 공식 법령 사이트</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>국가</th>
+<th>사이트</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>미국</td>
+<td>uscode.house.gov (연방법전) · congress.gov (의안·법률)</td>
+<td>congress.gov는 자동 접속 확인 화면이 떠 사람이 브라우저로 열어 확인함</td>
+</tr>
+<tr>
+<td>영국</td>
+<td>legislation.gov.uk</td>
+<td></td>
+</tr>
+<tr>
+<td>독일</td>
+<td>gesetze-im-internet.de</td>
+<td>연방 법무부·연방법무청 제공, 영문 번역 메뉴 있음</td>
+</tr>
+<tr>
+<td>프랑스</td>
+<td>legifrance.gouv.fr</td>
+<td>자동 접속 확인 화면이 떠 사람이 브라우저로 열어 확인함</td>
+</tr>
+<tr>
+<td>일본</td>
+<td>laws.e-gov.go.jp (e-Gov 法令検索)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>대조할 것: 조문 번호·시행일·개정 여부, 의무·재량 표현(shall·may)의 번역, AI가 제시한 국가·조문이 실제로 있는지</li>
+</ul>
+<h3>3.4 입법예고·행정입법</h3>
+<p><strong>국민참여입법센터 입법정보공개 API</strong> (법제처, opinion.lawmaking.go.kr '정보공개 활용가이드')</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주는 것</td>
+<td>입법현황·입법계획·입법예고(수정일 기준 조회 포함)·행정예고의 목록과 상세, 법령해석례, 자치법제 의견제시사례</td>
+</tr>
+<tr>
+<td>발급</td>
+<td>법제처 입법정보공개 서비스를 신청해 승인받은 이용자만 씀. 신청할 때 호출할 컴퓨터의 IP를 등록함</td>
+</tr>
+<tr>
+<td>인증</td>
+<td>요청 주소에 OC 값(가입 ID의 @ 앞부분)을 넣음</td>
+</tr>
+<tr>
+<td>오류</td>
+<td>400·401·403이 뜨면 신청 승인 여부, 등록 IP, OC 값을 차례로 확인함</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>시킬 일 예시</li>
+<li>"이 법률안의 소관 부처가 최근 입법예고한 시행령 개정안을 찾아 예고 기간과 주요 내용을 정리해줘"</li>
+<li>"개정안이 시행령에 위임하는 조항을 3단 비교로 확인하고, 현행 시행령에 대응 조항이 있는지 표로 정리해줘"(국가법령정보 API의 <code>thdCmp</code>, korean-law-mcp의 위임입법 점검 활용)</li>
+</ul>
+<h3>3.5 비용추계·재정</h3>
+<ul>
+<li>근거: 「국회법」 제79조의2. 의원이 예산상 또는 기금상의 조치를 수반하는 의안을 발의할 때 국회예산정책처의 추계서 또는 추계요구서를 함께 제출하고, 정부 제출 의안은 추계서와 재원조달방안 자료를 첨부함</li>
+<li>비용추계 요구: 위원회 또는 의원이 국회예산정책처에 요구함(FAX 또는 국회종합입법지원 시스템). 처리 부서는 추계세제분석실임</li>
+<li><strong>회답은 비공개 원칙임</strong>. 요구 위원회 또는 의원이 공개에 동의한 경우에만 공개됨. 공개 여부를 확인하기 전에는 AI에 넣지 않음</li>
+</ul>
+<p><strong>국회예산정책처 재정경제통계시스템 Open API</strong> (nabostats.go.kr 'Open API')</p>
+<ul>
+<li>서비스 통계 목록, 통계 세부항목 조회, 통계 데이터 조회, 통계 용어사전 조회를 제공함</li>
+<li>사이트에서 인증키를 발급받아 씀. '통계코드 검색' 메뉴로 통계 코드를 찾음</li>
+</ul>
+<p><strong>열린재정 Open API</strong> (openfiscaldata.go.kr '재정정보 공개 &gt; OPEN API')</p>
+<ul>
+<li>재정수입 구조, 국세수입 추이, 재정사업별 예산 시계열, 재정사업 집행실적, 민간투자사업 현황, 경제·국제비교 통계 등 약 150개 데이터를 제공함</li>
+<li>발급: 본인인증 → 신청자명·활용용도·활용 목적 입력 → 개인정보 수집·이용 확인 후 발급. 인증키는 최대 10개까지 발급 가능함</li>
+<li>데이터별 상세 화면의 'Open API' 탭에서 요청 주소와 인자를 확인하고 시험 호출함</li>
+<li>시킬 일 예시</li>
+<li>"열린재정 API로 이 법률안과 관련된 재정사업의 최근 5년 예산과 집행실적을 표로 가져와줘"</li>
+<li>"비용추계서의 연도별 표를 다시 계산해 합계가 맞는지 검산하고, 대상 인원·단가 가정이 조문 내용과 맞는지 표시해줘"</li>
+<li>대조할 것: 금액·단위·회계연도, 합계 검산, 추계 전제와 조문의 대응</li>
+</ul>
+<h3>3.6 통계</h3>
+<p><strong>KOSIS 공유서비스</strong> (국가데이터처, kosis.kr/openapi)</p>
+<ul>
+<li>국가통계포털의 통계목록·통계자료(통계표)·대용량통계자료·통계설명을 API로 제공함</li>
+<li>발급: 회원가입 → 활용신청(인증키 신청)</li>
+<li>주의: 분당 호출건수 제한과 HTTP 제공 종료 공지가 게시돼 있음(2026년). <code>https</code> 주소로 부르고 반복 호출 간격을 둠</li>
+<li>시킬 일 예시: "KOSIS API로 최근 10년 플랫폼 종사자 관련 통계표를 찾아 통계표 이름·작성기관·수록 기간 목록을 먼저 보여줘. 값은 내가 고른 표만 가져와"</li>
+</ul>
+<p><strong>공공데이터포털</strong> (data.go.kr)</p>
+<ul>
+<li>부처·공공기관 API의 관문임. 회원가입 → API별 활용신청 → 인증키(serviceKey) 사용</li>
+<li>승인 방식(자동승인·심의승인)과 개발계정 트래픽은 API마다 다르며 각 API 상세 화면에 표시됨</li>
+<li>주의: 등록 정보가 바뀌거나 삭제된 API가 있음. 예전 주소가 열리지 않으면 포털에서 기관명으로 다시 검색함</li>
+</ul>
+<h3>3.7 문서 읽기·변환</h3>
+<p><strong>kordoc</strong> (github.com/chrisryugj/kordoc, MIT)</p>
+<ul>
+<li>HWP·HWPX·PDF·XLSX·DOCX·PPTX를 Markdown과 구조화 데이터로 바꿈. 표 추출, 문서 비교, 서식을 지키는 부분 수정, Markdown에서 HWPX 작성, 표기·공공언어 검수, 예산 산출근거 검산, 개인정보 마스킹을 제공함</li>
+<li>설치(키 필요 없음, Node.js 20 이상)</li>
+<li><code>npx -y kordoc setup</code>: 설치된 Claude Code·Claude Desktop 등에 MCP를 등록함</li>
+<li>또는 Claude Code 플러그인: <code>/plugin marketplace add chrisryugj/kordoc</code> → <code>/plugin install kordoc@kordoc</code></li>
+<li>명령줄만 쓸 때: <code>npx kordoc 문서.hwpx -o 문서.md</code></li>
+<li>시킬 일 예시</li>
+<li>"의안 원문 PDF의 신·구조문대비표를 표로 추출해 개정 조문별로 정리해줘"</li>
+<li>"부처가 낸 제출자료(hwpx)와 요구 항목 목록을 대조해 빠진 항목을 표시해줘"</li>
+<li>"검토보고서 초안(md)을 보고서 양식 hwpx로 만들어줘"</li>
+<li>주의: 변환 결과의 표·수치는 원본 파일과 대조함. 스캔 이미지는 문자 인식(OCR)을 거치므로 오인식 가능성이 더 큼</li>
+</ul>
+<hr />
+<h2>4. 검토보고서 작성 흐름에 붙이기</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>단계</th>
+<th>쓰는 도구</th>
+<th>시킬 일</th>
+<th>사람이 대조할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>의안 파악</td>
+<td>열린국회정보 API · 의안정보시스템 · kordoc</td>
+<td>제안이유·주요내용 정리, 신구조문 표 추출</td>
+<td>의안번호·제안자·제안일</td>
+</tr>
+<tr>
+<td>현행 법령 확인</td>
+<td>korean-law-mcp · 국가법령정보 API</td>
+<td>현행 조문·시행일, 위임 관계(3단 비교) 확인</td>
+<td>시행일·부칙, 조문 번호</td>
+</tr>
+<tr>
+<td>판례·결정례</td>
+<td>korean-law-mcp</td>
+<td>관련 판례·헌재결정 목록, 요지 정리</td>
+<td>사건번호·선고일, 요지 인용 문장</td>
+</tr>
+<tr>
+<td>계류 의안·심사 경과</td>
+<td>열린국회정보 API · 국회회의록</td>
+<td>같은 조문을 다루는 의안 목록, 심사 발언 정리</td>
+<td>처리 상태, 발언자·회의 차수</td>
+</tr>
+<tr>
+<td>해외 입법례</td>
+<td>입법자료포털 API · 각국 공식 사이트</td>
+<td>국가별 비교표 초안, 원문 번역 초안</td>
+<td>조문 실존·시행 여부, 번역어</td>
+</tr>
+<tr>
+<td>재정 영향</td>
+<td>열린재정 · 재정경제통계시스템 · 비용추계서</td>
+<td>관련 사업 예산·집행 표, 추계 검산</td>
+<td>금액·단위·연도, 합계</td>
+</tr>
+<tr>
+<td>인용 점검</td>
+<td>korean-law-mcp <code>verify_citations</code></td>
+<td>초안 전체의 조문·판례 인용 실존 확인</td>
+<td>확인 결과 중 '없음'으로 나온 항목 전부</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>5. 보안·이용 수칙</h2>
+<ul>
+<li><strong>소속 기관의 생성형 AI 이용 지침이 이 자료보다 우선함</strong></li>
+<li><strong>넣지 않는 것</strong>: 비공개 문서, 공개 동의 전의 비용추계 회답, 공개되지 않은 부처 제출자료, 검토 중인 내부 의견, 개인정보가 담긴 자료. 공개된 의안·법령·회의록·통계로 시작함</li>
+<li><strong>외부 서버를 거치는 도구를 구분함</strong>: korean-law-mcp 플러그인·웹 커넥터는 제작자 공개 서버를 거쳐 조회함. 검토 중인 문안을 넣는 조회는 내 컴퓨터 설치 방식으로 함</li>
+<li><strong>인증키를 채팅 창에 붙이지 않음</strong>: 대화 기록에 남음. Claude에게는 "키는 환경변수 LAW_OC에서 읽어"처럼 변수 이름만 알려 줌</li>
+<li><strong>키를 주소(URL)에 넣는 방식을 줄임</strong>: 주소에 붙은 키는 접속 기록에 평문으로 남을 수 있음. 헤더나 환경변수로 넘기는 방식을 지원하는 도구는 그쪽을 씀</li>
+<li><strong>유출 의심 시 재발급함</strong>: 법제처는 마이페이지 'API인증키관리', 열린국회정보는 '인증키 발급내역'에서 관리함</li>
+<li><strong>MCP 설치는 남이 만든 코드를 내 컴퓨터에서 실행하는 일임</strong>: Claude Code 공식 문서는 연결 전에 각 서버를 신뢰할 수 있는지 확인하라고 경고하며, 외부 내용을 가져오는 서버는 프롬프트 인젝션 위험에 노출될 수 있다고 안내함. 공식 저장소의 설치 명령만 복사해 씀</li>
+<li><strong>프롬프트 인젝션 대비</strong>: 외부 웹페이지·문서 속에 숨긴 지시문이 AI를 조종하려 할 수 있음. 외부 자료를 읽힌 뒤 Claude가 제안하는 명령·파일 수정은 승인 전에 읽어 봄</li>
+<li><strong>호출 한도를 지시에 넣음</strong>: 공공 API는 계정별 호출 한도가 있음. "100건씩 끊어서, 한 번에 1,000건까지만"처럼 상한을 정해 시킴</li>
+</ul>
+<hr />
+<h2>6. 이용 시 유의</h2>
+<ul>
+<li>절차·메뉴 이름·요청 주소는 2026. 10. 26. 기준임. 포털 개편으로 바뀔 수 있으므로 쓰기 전에 각 사이트의 명세서와 공지사항을 확인함</li>
+<li>각 API의 호출 한도·승인 방식은 사이트 화면에 표시된 값을 따름</li>
+<li>도구가 돌려준 결과는 초안 재료임. 조문·수치·인용은 원문 화면과 대조한 뒤 검토보고서에 씀</li>
+</ul>
+</div></body></html>

@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 .env
+tools/출처검증_보고서.md
