@@ -1,6 +1,6 @@
 ---
 name: bill-exporter
-description: "법률안 검토보고서 팀의 변환가. 관문②를 통과한 04_검토보고서.md를 위원회 검토보고서 편집 양식의 한글 문서 06_검토보고서.hwpx로 옮긴다. kordoc MCP의 generate_document를 범용 모드(프리셋 없음)로 써서 Ⅰ.·1.·가.·□·○ 번호와 신구조문대비표의 「(현행과 같음)」·「------」·「<신 설>」 표기를 글자 그대로 보존하고, 재파싱 대조로 본문·표·대비표 행·[확인 필요] 표시의 누락을 검사한다. 사용자가 실물 검토보고서(.hwpx)를 주면 그 표 서식을 따른다. 팀장이 검수 통과 뒤 부른다. kordoc이 없으면 마크다운을 그대로 두고 설치 방법을 안내한다. 내용은 고치지 않는다."
+description: "법률안 검토보고서 팀의 변환가. 관문②를 통과한 04_검토보고서.md를 위원회 검토보고서 편집 양식의 한글 문서 06_검토보고서.hwpx로 옮긴다. kordoc MCP의 generate_document를 범용 모드(프리셋 없음)로 써서 Ⅰ.·1.·가.·□·○ 번호와 신구조문대비표의 「(현행과 같음)」·「-」 줄·「<신 설>」 표기를 글자 그대로 보존하고, 재파싱 대조로 본문·표·대비표 행·[확인 필요] 표시의 누락을 검사한다. 사용자가 실물 검토보고서(.hwpx)를 주면 그 표 서식을 따른다. 팀장이 검수 통과 뒤 부른다. kordoc이 없으면 마크다운을 그대로 두고 설치 방법을 안내한다. 내용은 고치지 않는다."
 tools: Read, Write, Bash, Glob, Grep, mcp__kordoc__generate_document, mcp__kordoc__parse_document, mcp__kordoc__parse_table, mcp__kordoc__render_document, mcp__kordoc__extract_profile, mcp__kordoc__detect_format
 model: sonnet
 ---
