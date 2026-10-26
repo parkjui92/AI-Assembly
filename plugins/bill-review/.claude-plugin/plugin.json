@@ -1,0 +1,25 @@
+{
+  "name": "bill-review",
+  "description": "법률안 검토보고서 작성팀 — 검토설계 → 관문①(설계 판정) → 쟁점 사용자 승인 → 자료조사·조문 원장(기준일 법령 원문) → 집필 → 조문 대조 검문소(article_check — 인용 조문이 현행에 없거나 신구조문대비표가 원문과 다르면 산출 보류) → 관문②(초안 검수) → 검토보고서 편집 양식 한글(.hwpx) 변환. 「법률안검토 표준교재」 제3편의 정책·법제 착안점을 점검 질문으로 새로 써 넣은 국회 직원 교육용 에이전트 팀.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jui Park",
+    "url": "https://github.com/parkjui92"
+  },
+  "homepage": "https://github.com/parkjui92/AI-Assembly",
+  "repository": "https://github.com/parkjui92/AI-Assembly",
+  "license": "MIT",
+  "keywords": [
+    "bill-review",
+    "legislation",
+    "national-assembly",
+    "agent-team",
+    "verification-gate",
+    "hwpx",
+    "korean",
+    "claude-code-plugin",
+    "법률안",
+    "검토보고서",
+    "신구조문대비표"
+  ]
+}
