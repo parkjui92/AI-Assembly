@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Assembly</title>
+<style>
+:root{--bg:#f4f7fb;--fg:#12243f;--muted:#5d6f86;--line:#d6e0ec;--blue:#1f5fbf;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1826;--fg:#e4ecf7;--muted:#9fb0c6;--line:#2a3a52;--blue:#7fb0ff;--card:#162235}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+main{max-width:760px;margin:0 auto;padding:40px 16px}
+h1{font-size:26px;margin:0 0 6px}p.sub{color:var(--muted);margin:0 0 28px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
+h2{font-size:18px;margin:0 0 8px}a{color:var(--blue);font-weight:600}
+code{display:block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:14px;white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body>
+<main>
+<h1>법률안 검토보고서 에이전트 설계 및 업무 자동화</h1>
+<p class="sub">국회사무처 의정연수원 신임관리자 과정 · 생성형 AI 업무 활용(심화): Claude Code · 2026. 10. 26.</p>
+<section><h2>1. 강의자료</h2>
+<a href="slides/">HTML로 보기</a> · <a href="slides/강의자료_법률안검토보고서에이전트_20261026.pdf">PDF 내려받기</a></section>
+<section><h2>2. 입법조사관용 MCP·API 도구 모음</h2>
+<a href="tools/입법조사관_MCP_API_도구모음.html">HTML로 보기</a> · <a href="tools/입법조사관_MCP_API_도구모음.pdf">PDF 내려받기</a></section>
+<section><h2>3. 플러그인: 법률안 검토보고서 작성팀(bill-review)</h2>
+<code>claude plugin marketplace add parkjui92/AI-Assembly
+claude plugin install bill-review@ai-assembly</code>
+<p><a href="https://github.com/parkjui92/AI-Assembly">저장소 보기</a></p></section>
+</main>
+</body>
+</html>
