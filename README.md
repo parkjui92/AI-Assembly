@@ -3,21 +3,24 @@
 국회사무처 의정연수원 신임관리자 과정 · 생성형 AI 업무 활용(심화): Claude Code
 **법률안 검토보고서 에이전트 설계 및 업무 자동화** · 2026. 10. 26.
 
-**바로 열기: [강의자료(HTML)](https://parkjui92.github.io/AI-Assembly/slides/)**
+**바로 열기: [강의자료(HTML)](https://parkjui92.github.io/AI-Assembly/slides/) · [입법조사관용 MCP·API 도구 모음(HTML)](https://parkjui92.github.io/AI-Assembly/tools/)**
 
 ## 1. 강의자료
 
-| 형식 | 파일 | 비고 |
-|---|---|---|
-| HTML | [slides/index.html](slides/index.html) | 브라우저에서 클릭·←→로 넘김, 복사 버튼 작동 |
-| PDF | [slides/강의자료_법률안검토보고서에이전트_20261026.pdf](slides/강의자료_법률안검토보고서에이전트_20261026.pdf) | 정지 화면, 글꼴 내장 |
+| 형식 | 바로 보기 | 내려받기 | 비고 |
+|---|---|---|---|
+| HTML | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/slides/) | [slides/index.html](slides/index.html) 화면의 ⤓(Download raw file) | 클릭·←→로 넘김, 복사 버튼 작동 |
+| PDF | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/slides/강의자료_법률안검토보고서에이전트_20261026.pdf) | [PDF 내려받기](https://github.com/parkjui92/AI-Assembly/raw/main/slides/강의자료_법률안검토보고서에이전트_20261026.pdf) | 정지 화면, 글꼴 내장 |
 
 ## 2. 입법조사관용 MCP·API 도구 모음
 
-| 형식 | 파일 |
-|---|---|
-| HTML | [tools/입법조사관_MCP_API_도구모음.html](tools/입법조사관_MCP_API_도구모음.html) |
-| PDF | [tools/입법조사관_MCP_API_도구모음.pdf](tools/입법조사관_MCP_API_도구모음.pdf) |
+Claude Code에 붙여 쓰는 법령·의안·입법례·재정·통계 자료원과 연결 방법(2026. 10. 26. 기준)
+
+| 형식 | 바로 보기 | 내려받기 |
+|---|---|---|
+| HTML | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/tools/) | [tools/index.html](tools/index.html) 화면의 ⤓(Download raw file) |
+| PDF | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/tools/입법조사관_MCP_API_도구모음.pdf) | [PDF 내려받기](https://github.com/parkjui92/AI-Assembly/raw/main/tools/입법조사관_MCP_API_도구모음.pdf) |
+| 원고(md) | [tools/입법조사관_MCP_API_도구모음.md](tools/입법조사관_MCP_API_도구모음.md) | 같은 화면의 ⤓ |
 
 ## 3. 플러그인: 법률안 검토보고서 작성팀(bill-review)
 
