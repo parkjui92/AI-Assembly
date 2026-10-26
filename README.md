@@ -26,6 +26,8 @@ Claude Code에 붙여 쓰는 법령·의안·입법례·재정·통계 자료원
 
 검토설계 → 관문①(설계 판정) → 쟁점 승인 → 자료조사·조문 원장 → 집필 → 조문 대조 검문소 → 관문②(초안 검수) → 한글(.hwpx) 변환
 
+**플러그인 저장소: [plugins/bill-review](https://github.com/parkjui92/AI-Assembly/tree/main/plugins/bill-review)** (에이전트 5 · 스킬 8 · 조문 대조 검문소 스크립트, MIT)
+
 ```bash
 claude plugin marketplace add parkjui92/AI-Assembly
 claude plugin install bill-review@ai-assembly
