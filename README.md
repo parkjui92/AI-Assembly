@@ -46,6 +46,10 @@ claude plugin install bill-review@ai-assembly
 | 의안원문(자전거법 일부개정안 2117808) | 해보기 ① · `입력/`에 저장 | [PDF](https://likms.assembly.go.kr/filegate/servlet/FileGate?bookId=51621BDE-4DCB-C7F4-932C-E5C192D431F9&type=1) |
 | 실제 검토보고서(행정안전위원회) | 해보기 ⑬ · 초안 저장 뒤 `비교자료/`에 저장 | [PDF](https://likms.assembly.go.kr/filegate/servlet/FileGate?bookId=64187374-C2BC-8199-5B83-F437B744CE78&type=1) |
 
+## 5. 공공AX 참고 사례
+
+- [모두의 공공AX 사례 아카이브](https://hollobit.github.io/PAX/) — Threads와 오픈채팅에서 수집한 공공기관 AI 전환(AX) 사례 모음(hollobit)
+
 ## 유의
 
 - 초안은 에이전트가, 쟁점 판단과 결론은 작성자가 함
