@@ -3,9 +3,16 @@
 국회사무처 의정연수원 신임관리자 과정 · 생성형 AI 업무 활용(심화): Claude Code
 **법률안 검토보고서 에이전트 설계 및 업무 자동화** · 2026. 10. 26.
 
-**바로 열기: [강의자료(HTML)](https://parkjui92.github.io/AI-Assembly/slides/) · [입법조사관용 MCP·API 도구 모음(HTML)](https://parkjui92.github.io/AI-Assembly/tools/)**
+**바로 열기: [11/13 강의자료(HTML)](https://parkjui92.github.io/AI-Assembly/slides/1113/) · [10/26 강의자료(HTML)](https://parkjui92.github.io/AI-Assembly/slides/) · [입법조사관용 MCP·API 도구 모음(HTML)](https://parkjui92.github.io/AI-Assembly/tools/)**
 
-## 1. 강의자료
+## 2026. 11. 13. 정보화교육 강의자료
+
+| 형식 | 바로 보기 | 내려받기 | 비고 |
+|---|---|---|---|
+| HTML | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/slides/1113/) | [slides/1113/index.html](slides/1113/index.html) 화면의 ⤓(Download raw file) | 클릭·←→로 넘김, 복사 버튼 작동 |
+| PDF | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/slides/1113/강의자료_법률안검토보고서에이전트_20261113.pdf) | [PDF 내려받기](https://github.com/parkjui92/AI-Assembly/raw/main/slides/1113/강의자료_법률안검토보고서에이전트_20261113.pdf) | 정지 화면, 글꼴 내장 |
+
+## 1. 강의자료(2026. 10. 26.)
 
 | 형식 | 바로 보기 | 내려받기 | 비고 |
 |---|---|---|---|
