@@ -4450,6 +4450,30 @@ html[data-theme="dark"] .w2fig,html[data-theme="dark"] .fig,html[data-theme="dar
       
     </section>
 
+<section class="slide dense" data-sid="a21">
+<style>[data-sid="a21"] table td,[data-sid="a21"] table th{padding-top:4px!important;padding-bottom:4px!important;line-height:1.3!important}</style>
+<h2><span class="hands">★ 해보기 ①</span> 팀 플러그인 설치</h2><div class="rule"></div>
+<p class="lead">공개 저장소 <b>parkjui92/AI-Assembly</b>를 마켓플레이스로 등록하고 작성팀 설치</p>
+<div class="prompt">GitHub 저장소 parkjui92/AI-Assembly를 플러그인 마켓플레이스로 추가하고 bill-review 플러그인을 설치해줘.</div><table><thead><tr><th style="width:14%">순서</th><th style="width:48%">할 일</th><th style="width:38%">완료 확인</th></tr></thead><tbody><tr><td class="em">폴더 선택</td><td>법률안실습 폴더 열기</td><td>경로가 바탕화면/법률안실습</td></tr><tr><td class="em">설치 요청</td><td>위 요청문을 붙여 넣기</td><td>bill-review 플러그인 활성화</td></tr><tr><td class="em">새 세션</td><td>설치 후 같은 법률안실습 폴더에서 새 대화(세션) 열기</td><td>팀원과 스킬 목록 조회</td></tr><tr><td class="em">준비 점검</td><td>"교육용 실습 준비 상태만 확인해줘" 입력</td><td>Python · 검문소 확인(법령 도구는 해보기 ⑦에서)</td></tr><tr><td class="em">오류 시</td><td>새 세션에 목록이 없으면 앱을 닫고 다시 열기</td><td>같은 폴더에서 목록 재확인</td></tr></tbody></table><p class="note">명령 예: claude plugin marketplace add parkjui92/AI-Assembly<br>claude plugin install bill-review@ai-assembly</p><p class="srcline">출처: <a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code · 플러그인 마켓플레이스</a> · <a href="https://github.com/parkjui92/AI-Assembly">github.com/parkjui92/AI-Assembly</a> · 확인 2026. 10. 26.</p>
+
+</section>
+
+<section class="slide" data-sid="a22">
+      <h2>설치 확인: 팀원과 스킬 목록</h2>
+      <div class="rule"></div>
+      <div class="prompt">설치된 법률안 검토보고서 작성팀의 팀원이 누구이고 각자 무엇을 하는지, 스킬은 무엇이 있는지 표로 보여줘</div>
+      <ul class="bullets">
+        <li><b>확인</b>: 새 세션에서 검토설계자 · 자료조사관 등 설치한 역할 목록이 나오면 완료 · 안 되면 <b>손을 들어 줄 것</b></li>
+      </ul>
+      <div class="grid-3">
+        <div class="card"><div class="stat"><span class="num">팀원</span><span class="cap">검토설계자 · 자료조사관 · 집필가 · <b>검수관(읽기 전용)</b> · 변환가</span></div></div>
+        <div class="card"><div class="stat"><span class="num">스킬</span><span class="cap">팀장 · 착안점 · 문체 · 조문 대조 · 자료원 · 관문 판정 · 한글 변환 · 교육용 실행</span></div></div>
+        <div class="card accent"><div class="stat"><span class="num">관문</span><span class="cap">설계 판정 · 조문 대조 검문소 · 초안 검수 · <b class="hot">쟁점 승인(사람)</b></span></div></div>
+      </div>
+      <div class="callout">팀원 이름을 외울 필요 없이 <mark>"검토보고서 초안 써줘"</mark> 한마디면 순서대로 불려 나옴</div>
+      
+    </section>
+
 <section class="slide dense" data-sid="b20">
 <h2>실습 법률안과 자료 구분</h2><div class="rule"></div>
 <p class="lead">기본은 <b>자전거법 일부개정안 2117808</b> · 담당 분야는 <b>조건을 맞춘 법률안</b>만</p>
@@ -4502,7 +4526,7 @@ html[data-theme="dark"] .w2fig,html[data-theme="dark"] .fig,html[data-theme="dar
 </section>
 
 <section class="slide" data-sid="L61">
-      <h2><span class="hands">★ 해보기 ①</span> 의안원문 내려받기</h2>
+      <h2><span class="hands">★ 해보기 ②</span> 의안원문 내려받기</h2>
       <div class="rule"></div>
       <p class="lead">대화창에 답만 받지 않고 <mark>작업 폴더에 파일이 생기는 것</mark>까지 확인</p>
       <div class="prompt">의안정보시스템에서 의안번호 2117808의 의안원문 PDF를 내려받아 입력/ 폴더에 의안원문_2117808.pdf로 저장해줘. 주소: https://likms.assembly.go.kr/filegate/servlet/FileGate?bookId=51621BDE-4DCB-C7F4-932C-E5C192D431F9&amp;type=1</div>
@@ -4521,36 +4545,12 @@ html[data-theme="dark"] .w2fig,html[data-theme="dark"] .fig,html[data-theme="dar
       
     </section>
 
-<section class="slide dense" data-sid="a21">
-<style>[data-sid="a21"] table td,[data-sid="a21"] table th{padding-top:4px!important;padding-bottom:4px!important;line-height:1.3!important}</style>
-<h2><span class="hands">★ 해보기 ②</span> 팀 플러그인 설치</h2><div class="rule"></div>
-<p class="lead">공개 저장소 <b>parkjui92/AI-Assembly</b>를 마켓플레이스로 등록하고 작성팀 설치</p>
-<div class="prompt">GitHub 저장소 parkjui92/AI-Assembly를 플러그인 마켓플레이스로 추가하고 bill-review 플러그인을 설치해줘.</div><table><thead><tr><th style="width:14%">순서</th><th style="width:48%">할 일</th><th style="width:38%">완료 확인</th></tr></thead><tbody><tr><td class="em">폴더 선택</td><td>법률안실습 폴더 열기</td><td>입력/의 의안원문 PDF</td></tr><tr><td class="em">설치 요청</td><td>위 요청문을 붙여 넣기</td><td>bill-review 플러그인 활성화</td></tr><tr><td class="em">새 세션</td><td>설치 후 같은 법률안실습 폴더에서 새 대화(세션) 열기</td><td>팀원과 스킬 목록 조회</td></tr><tr><td class="em">준비 점검</td><td>"교육용 실습 준비 상태만 확인해줘" 입력</td><td>Python · 검문소 확인(법령 도구는 해보기 ⑦에서)</td></tr><tr><td class="em">오류 시</td><td>새 세션에 목록이 없으면 앱을 닫고 다시 열기</td><td>같은 폴더에서 목록 재확인</td></tr></tbody></table><p class="note">명령 예: claude plugin marketplace add parkjui92/AI-Assembly<br>claude plugin install bill-review@ai-assembly</p><p class="srcline">출처: <a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code · 플러그인 마켓플레이스</a> · <a href="https://github.com/parkjui92/AI-Assembly">github.com/parkjui92/AI-Assembly</a> · 확인 2026. 10. 26.</p>
-
-</section>
-
-<section class="slide" data-sid="a22">
-      <h2>설치 확인: 팀원과 스킬 목록</h2>
-      <div class="rule"></div>
-      <div class="prompt">설치된 법률안 검토보고서 작성팀의 팀원이 누구이고 각자 무엇을 하는지, 스킬은 무엇이 있는지 표로 보여줘</div>
-      <ul class="bullets">
-        <li><b>확인</b>: 새 세션에서 검토설계자 · 자료조사관 등 설치한 역할 목록이 나오면 완료 · 안 되면 <b>손을 들어 줄 것</b></li>
-      </ul>
-      <div class="grid-3">
-        <div class="card"><div class="stat"><span class="num">팀원</span><span class="cap">검토설계자 · 자료조사관 · 집필가 · <b>검수관(읽기 전용)</b> · 변환가</span></div></div>
-        <div class="card"><div class="stat"><span class="num">스킬</span><span class="cap">팀장 · 착안점 · 문체 · 조문 대조 · 자료원 · 관문 판정 · 한글 변환 · 교육용 실행</span></div></div>
-        <div class="card accent"><div class="stat"><span class="num">관문</span><span class="cap">설계 판정 · 조문 대조 검문소 · 초안 검수 · <b class="hot">쟁점 승인(사람)</b></span></div></div>
-      </div>
-      <div class="callout">팀원 이름을 외울 필요 없이 <mark>"검토보고서 초안 써줘"</mark> 한마디면 순서대로 불려 나옴</div>
-      
-    </section>
-
 <section class="slide" data-sid="a24">
       <h2>실제 폴더 구조: agents · skills · references</h2>
       <div class="rule"></div>
       <p class="lead">구조도의 칸은 전부 <mark>폴더 안의 파일</mark></p>
       <div class="cols">
-        <div class="code" style="font-size:13.8px;line-height:1.48;margin:0">bill-review/   <span class="dim">MIT</span>   <span class="ok">해보기 ② 설치</span>
+        <div class="code" style="font-size:13.8px;line-height:1.48;margin:0">bill-review/   <span class="dim">MIT</span>   <span class="ok">해보기 ① 설치</span>
 ├─ .claude-plugin/plugin.json   <span class="dim">플러그인 명세</span>
 ├─ <span class="p">agents/</span>   <span class="dim">팀원 업무기술서</span>
 │   ├─ bill-designer.md   <span class="dim">검토설계자</span>
@@ -6106,7 +6106,7 @@ model: inherit   <span class="w">③</span> <span class="dim">model은 사용할
         <thead><tr><th style="width:17%">조작</th><th>방법</th></tr></thead>
         <tbody>
           <tr><td class="em">① 입력</td><td>할 일을 말로 적고 Enter</td></tr>
-          <tr><td class="em">② 파일 넣기</td><td>@ 뒤에 입력/에서 파일 선택(해보기 ①에서 저장) · + 버튼 · 입력창에 끌어 놓기</td></tr>
+          <tr><td class="em">② 파일 넣기</td><td>@ 뒤에 입력/에서 파일 선택(해보기 ②에서 저장) · + 버튼 · 입력창에 끌어 놓기</td></tr>
           <tr><td class="em">③ 권한 허용</td><td><b class="hot">대상 경로와 바뀔 내용</b>을 읽고 수락 · 법률안실습 밖이면 거부</td></tr>
           <tr><td class="em">④ 멈추기</td><td>정지 버튼 · Esc · 멈추지 않고 수정할 내용을 적어 Enter</td></tr>
           <tr><td class="em">⑤ 플랜 모드</td><td>모드 선택에서 Plan: 파일을 수정하지 않고 계획만 받아 승인</td></tr>
