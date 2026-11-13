@@ -29,6 +29,12 @@ Claude Code에 붙여 쓰는 법령·의안·입법례·재정·통계 자료원
 | PDF | [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/tools/입법조사관_MCP_API_도구모음.pdf) | [PDF 내려받기](https://github.com/parkjui92/AI-Assembly/raw/main/tools/입법조사관_MCP_API_도구모음.pdf) |
 | 원고(md) | [tools/입법조사관_MCP_API_도구모음.md](tools/입법조사관_MCP_API_도구모음.md) | 같은 화면의 ⤓ |
 
+**법제처 Open API 인증키(OC) 받는 법: 시연 영상(HTML, 자동 재생 76초) [브라우저에서 열기](https://parkjui92.github.io/AI-Assembly/tools/law-api-key/)**
+
+- 회원가입 → Open API 신청 → 승인 대기(신청 후 1~2일) → 마이페이지 API인증키관리 → 키 보관
+- 국가법령정보 공동활용 누리집 화면(2026. 11. 13. 촬영). 로그인 뒤 단계는 법제처 이용안내의 공식 안내 그림
+- 스페이스 일시정지 · ←→ 장면 이동
+
 ## 3. 플러그인: 법률안 검토보고서 작성팀(bill-review)
 
 검토설계 → 관문①(설계 판정) → 쟁점 승인 → 자료조사·조문 원장 → 집필 → 조문 대조 검문소 → 관문②(초안 검수) → 한글(.hwpx) 변환
